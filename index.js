@@ -22,29 +22,30 @@ app.use('/api',chatRoutes)
 
 const server = createServer(app)
 
-// const io = new Server(server, {
-//     cors: {
-//         origin: "*",
-//         methods: ["GET","POST"],
-//         credentials: true
-//     }
-// });
+const io = new Server(server, {
+    cors: {
+        origin: "*",
+        methods: ["GET","POST"],
+        credentials: true
+    }
+});
 
-// app.set("socketID",'')
-// io.on("connection", (socket) => {
-   
-//     socket.emit('connected',socket.id)
-//     app.set("socketID",socket.id)
-//     socket.on("send-message", ({ message, recipientID }) => {
-//       // 2. Update the send-message event handling to send message to recipientID
-//       // io.to(recipientID).emit("recieved-message", message);
-//       socket.broadcast.emit("recieved-message",message)
-//     });
-  
-//     // socket.on("disconnect", () => {
-//     //   console.log("User disconnected");
-//     // });
-//   });
+io.on("connection", (socket) => {
+
+ console.log("connected to socket.io")
+
+ socket.on("JoinChat",({chatID})=>{
+  console.log(`User joined ${chatID}`)
+  socket.join(chatID);
+ })
+
+ socket.on("messageSent", (messageObj)=>{
+  const chatID = messageObj._id
+  const message = messageObj.Messages[messageObj.Messages.length-1]
+ 
+  socket.to(chatID).emit("newMessage", message);
+ })
+  });
 
   
   
