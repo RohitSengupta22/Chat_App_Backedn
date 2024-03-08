@@ -7,7 +7,7 @@ const userRoutes = require('./Routes/UserRoutes.js')
 const chatRoutes = require('./Routes/ChatRoutes.js')
 
 const app = express()
-const port = 3002
+const port = process.env.PORT || 3002
 
 connect();
 
