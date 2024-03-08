@@ -42,7 +42,7 @@ io.on("connection", (socket) => {
  socket.on("messageSent", (messageObj)=>{
   const chatID = messageObj._id
   const message = messageObj.Messages[messageObj.Messages.length-1]
- 
+  console.log("message sent")
   socket.to(chatID).emit("newMessage", message);
  })
   });
