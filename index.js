@@ -24,8 +24,8 @@ const server = createServer(app)
 
 const io = new Server(server, {
     cors: {
-        origin: "https://tranquil-pegasus-4eb319.netlify.app",
-        methods: ["GET","POST"],
+        origin: "https://chatapp5794.netlify.app",
+        methods: ["GET", "POST", "PUT", "DELETE"], // Specify the methods you want to allow
         credentials: true
     }
 });
