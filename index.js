@@ -24,7 +24,7 @@ const server = createServer(app)
 
 const io = new Server(server, {
     cors: {
-        origin: "*",
+        origin: "https://tranquil-pegasus-4eb319.netlify.app",
         methods: ["GET","POST"],
         credentials: true
     }
